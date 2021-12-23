@@ -2,7 +2,7 @@
 
 A new Flutter application with APi calling and json parsing.
 
-https://github.com/Tarikul-Tuhin/Flutter_Api_Call_ListView/blob/main/Final%20Images%20of%20ths%20project/Screenshot_1640273663.png?raw=true
+![Finished App](https://github.com/Tarikul-Tuhin/Flutter_Api_Call_ListView/blob/main/Final%20Images%20of%20ths%20project/Screenshot_1640273663.png)
 
 ## Getting Started
 
