@@ -1,6 +1,8 @@
 # json_app
 
-A new Flutter application.
+A new Flutter application with APi calling and json parsing.
+
+https://i.ibb.co/Fq6J0Sg/Screenshot-1640273926.png
 
 ## Getting Started
 
