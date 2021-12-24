@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tarikulislam.json_app">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="json_app"
         android:icon="@mipmap/ic_launcher">

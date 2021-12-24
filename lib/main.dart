@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'new.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -73,6 +75,30 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            FloatingActionButton(
+              onPressed: () {},
+              child: Icon(Icons.navigate_before),
+            ),
+            FloatingActionButton(
+              onPressed: () {},
+              child: Icon(Icons.navigate_next),
+            )
+          ],
+        ),
+      ),
+//      floatingActionButton: FloatingActionButton(
+//        onPressed: () {
+//          print("Clicked!");
+//        },
+//        backgroundColor: Color(0xff517da3),
+//        child: Icon(Icons.edit),
+//      ),
       body: FutureBuilder<List<Photo>>(
         future: fetchPhotos(http.Client()),
         builder: (context, snapshot) {
@@ -104,31 +130,67 @@ class PhotosList extends StatelessWidget {
       itemCount: photos.length,
       itemBuilder: (context, index) {
         return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.blue[100],
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  offset: Offset(
+                    5.0,
+                    5.0,
+                  ), //Offset
+                  blurRadius: 5.0,
+                  spreadRadius: 1.0,
+                ), //BoxShadow
+                BoxShadow(
+                  color: Colors.white,
+                  offset: Offset(0.0, 0.0),
+                  blurRadius: 0.0,
+                  spreadRadius: 0.0,
+                ), //BoxShadow
+              ],
+            ),
             padding: const EdgeInsets.all(4.0),
-            color: Colors.tealAccent,
+            //color: Colors.tealAccent,
             margin: const EdgeInsets.all(15),
             child: Material(
               type: MaterialType.transparency,
-              child: ListTile(
-                leading: ClipRRect(
-                  //borderRadius: BorderRadius.circular(20.0), //or 15.0
-                  child: Container(
-                    child: Image.network(photos[index].thumbnailUrl),
-                    //Icon(Icons.volume_up, color: Colors.white, size: 50.0),
+              child: FlatButton(
+                onPressed: () {
+                  print('clicked');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => New()),
+                  );
+                },
+                child: ListTile(
+                  leading: ClipRRect(
+                    //borderRadius: BorderRadius.circular(20.0), //or 15.0
+                    child: Container(
+                      child: Image.network(photos[index].thumbnailUrl),
+                      //Icon(Icons.volume_up, color: Colors.white, size: 50.0),
+                    ),
                   ),
-                ),
 //                leading: CircleAvatar(
 //                  radius: 20.0,
 //
 //                  child: GestureDetector(onTap: () {}),
 //                ),
-                hoverColor: Colors.red,
-                //backgroundImage: NetworkImage(photos[index].thumbnailUrl),
+                  hoverColor: Colors.red,
+                  //backgroundImage: NetworkImage(photos[index].thumbnailUrl),
 
-                title: Text(photos[index].title),
-                subtitle: Text('URL: ' + photos[index].url),
-                //trailing: Image.network(photos[index].thumbnailUrl),
-                //child: Image.network(photos[index].thumbnailUrl),
+                  title: Text(
+                    photos[index].title,
+                    style: TextStyle(fontSize: 13.0),
+                  ),
+                  subtitle: Text(
+                    'URL: ' + photos[index].url,
+                    style: TextStyle(fontSize: 12.0),
+                  ),
+                  //trailing: Image.network(photos[index].thumbnailUrl),
+                  //child: Image.network(photos[index].thumbnailUrl),
+                ),
               ),
             ));
       },
